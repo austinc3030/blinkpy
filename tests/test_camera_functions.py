@@ -382,3 +382,12 @@ class TestBlinkCameraSetup(IsolatedAsyncioTestCase):
         ]
         await self.camera.update(config, expire_clips=False, force=True)
         self.assertEqual(self.camera.battery_level, None)
+
+    async def test_snooze(self, mock_resp):
+        """Test snooze camera functions."""
+        expected_response = "2022-12-01 00:00:00+00:00"
+        mock_resp.return_value = {"camera": [{"snooze_till": expected_response}]}
+
+        self.camera.product_type = "catalina"
+        self.assertEqual(await self.camera.snooze_till, expected_response)
+        self.assertIsNone(await self.camera.async_snooze())
