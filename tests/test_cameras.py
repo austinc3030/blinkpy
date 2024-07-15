@@ -14,6 +14,7 @@ from blinkpy.sync_module import BlinkSyncModule
 from blinkpy.camera import BlinkCamera, BlinkCameraMini, BlinkDoorbell
 import tests.mock_responses as mresp
 
+
 CONFIG = {
     "name": "new",
     "id": 1234,
